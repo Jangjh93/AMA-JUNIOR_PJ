@@ -4,10 +4,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 ```
 
-    C:\Users\Juhyeon\Anaconda3\lib\importlib\_bootstrap.py:219: RuntimeWarning: numpy.ufunc size changed, may indicate binary incompatibility. Expected 192 from C header, got 216 from PyObject
-      return f(*args, **kwds)
-    
-
 
 ```python
 origin_dataset = pd.read_csv("C:/Users/Juhyeon/Documents/Juhyeon/breast_cancer/breast-cancer.csv")
@@ -30,14 +26,17 @@ origin_dataset.head()
         vertical-align: middle;
     }
 
+
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -189,6 +188,7 @@ origin_dataset.head()
   </tbody>
 </table>
 <p>5 rows × 32 columns</p>
+
 </div>
 
 
@@ -207,14 +207,17 @@ dataset.head()
         vertical-align: middle;
     }
 
+
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -305,6 +308,7 @@ dataset.head()
     </tr>
   </tbody>
 </table>
+
 </div>
 
 
@@ -421,7 +425,7 @@ print(y)
      0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 1 1 0 1 0 1 0 0 0 0 0 1 0 0 1 0 1 0 1 1
      0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
      0 0 0 0 0 0 0 1 1 1 1 1 1 0]
-    
+
 
 
 ```python
@@ -429,10 +433,6 @@ print(y)
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 1)
 ```
-
-    C:\Users\Juhyeon\Anaconda3\lib\importlib\_bootstrap.py:219: RuntimeWarning: numpy.ufunc size changed, may indicate binary incompatibility. Expected 192 from C header, got 216 from PyObject
-      return f(*args, **kwds)
-    
 
 
 ```python
@@ -455,11 +455,7 @@ m1.fit(X_train,y_train)
 
 
 
-    LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
-                       intercept_scaling=1, l1_ratio=None, max_iter=100,
-                       multi_class='warn', n_jobs=None, penalty='l2',
-                       random_state=0, solver='warn', tol=0.0001, verbose=0,
-                       warm_start=False)
+    LogisticRegression(random_state=0)
 
 
 
@@ -477,7 +473,7 @@ print("Accuracy: %.3f" % acc)
     [[90 18]
      [16 47]]
     Accuracy: 0.801
-    
+
 
 
 ```python
@@ -490,10 +486,7 @@ m2.fit(X_train, y_train)
 
 
 
-    SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
-        decision_function_shape='ovr', degree=3, gamma='auto_deprecated',
-        kernel='rbf', max_iter=-1, probability=False, random_state=0,
-        shrinking=True, tol=0.001, verbose=False)
+    SVC(random_state=0)
 
 
 
@@ -511,7 +504,7 @@ print("Accuracy: %.3f" % acc)
     [[108   0]
      [ 63   0]]
     Accuracy: 0.632
-    
+
 
 
 ```python
@@ -524,9 +517,7 @@ m3.fit(X_train,y_train)
 
 
 
-    KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
-                         metric_params=None, n_jobs=None, n_neighbors=5, p=2,
-                         weights='uniform')
+    KNeighborsClassifier()
 
 
 
@@ -544,7 +535,7 @@ print("Accuracy: %.3f" % acc)
     [[106   2]
      [ 38  25]]
     Accuracy: 0.766
-    
+
 
 
 ```python
@@ -557,13 +548,7 @@ m4.fit(X_train, y_train)
 
 
 
-    RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
-                           max_depth=None, max_features='auto', max_leaf_nodes=None,
-                           min_impurity_decrease=0.0, min_impurity_split=None,
-                           min_samples_leaf=1, min_samples_split=2,
-                           min_weight_fraction_leaf=0.0, n_estimators=10,
-                           n_jobs=None, oob_score=False, random_state=0, verbose=0,
-                           warm_start=False)
+    RandomForestClassifier(n_estimators=10, random_state=0)
 
 
 
@@ -581,7 +566,7 @@ print("Accuracy: %.3f" % acc)
     [[108   0]
      [ 63   0]]
     Accuracy: 0.632
-    
+
 
 
 ```python
@@ -594,12 +579,7 @@ m5.fit(X_train, y_train)
 
 
 
-    DecisionTreeClassifier(class_weight=None, criterion='entropy', max_depth=None,
-                           max_features=None, max_leaf_nodes=None,
-                           min_impurity_decrease=0.0, min_impurity_split=None,
-                           min_samples_leaf=1, min_samples_split=2,
-                           min_weight_fraction_leaf=0.0, presort=False,
-                           random_state=0, splitter='best')
+    DecisionTreeClassifier(criterion='entropy', random_state=0)
 
 
 
@@ -617,4 +597,74 @@ print("Accuracy: %.3f" % acc)
     [[108   0]
      [ 63   0]]
     Accuracy: 0.632
+
+
+
+```python
+# Automated Machine Learning Using TPOT
+import torch
+import tpot
+from tpot import TPOTClassifier
+from sklearn.model_selection import StratifiedKFold
+```
+
+
+```python
+# model evaluation definition, 10 fold StratifiedKFold used here
+cv = StratifiedKFold(n_splits=10)
+# define TPOTClassifier
+automl_model = TPOTClassifier(generations=5, population_size=100, cv=cv, scoring='accuracy', verbosity=2, random_state=1, n_jobs=-1)
+# performing the search for best fit
+automl_model.fit(X, y)
+# exporting best model
+automl_model.export('tpot_data.py')
+```
+
+
+    HBox(children=(IntProgress(value=0, description='Optimization Progress', max=600, style=ProgressStyle(descript…
+
+
+​    
+
+    Generation 1 - Current best internal CV score: 0.9525375939849624
     
+    Generation 2 - Current best internal CV score: 0.9542919799498746
+    
+    Generation 3 - Current best internal CV score: 0.9560463659147869
+    
+    Generation 4 - Current best internal CV score: 0.9613721804511279
+    
+    Generation 5 - Current best internal CV score: 0.9613721804511279
+    
+    Best pipeline: GradientBoostingClassifier(RobustScaler(input_matrix), learning_rate=1.0, max_depth=3, max_features=0.9500000000000001, min_samples_leaf=10, min_samples_split=14, n_estimators=100, subsample=1.0)
+
+
+
+```python
+# TPOT result
+import numpy as np
+import pandas as pd
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import RobustScaler
+from tpot.export_utils import set_param_recursive
+
+# NOTE: Make sure that the outcome column is labeled 'target' in the data file
+tpot_data = pd.read_csv('PATH/TO/DATA/FILE', sep='COLUMN_SEPARATOR', dtype=np.float64)
+features = tpot_data.drop('target', axis=1)
+training_features, testing_features, training_target, testing_target = \
+            train_test_split(features, tpot_data['target'], random_state=1)
+
+# Average CV score on the training set was: 0.9613721804511279
+exported_pipeline = make_pipeline(
+    RobustScaler(),
+    GradientBoostingClassifier(learning_rate=1.0, max_depth=3, max_features=0.9500000000000001, min_samples_leaf=10, min_samples_split=14, n_estimators=100, subsample=1.0)
+)
+# Fix random state for all the steps in exported pipeline
+set_param_recursive(exported_pipeline.steps, 'random_state', 1)
+
+exported_pipeline.fit(training_features, training_target)
+results = exported_pipeline.predict(testing_features)
+
+```
