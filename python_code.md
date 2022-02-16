@@ -508,7 +508,7 @@ print("Accuracy: %.3f" % acc)
 
 
 ```python
-# Naive bayes
+# KNN
 from sklearn.neighbors import KNeighborsClassifier
 m3 = KNeighborsClassifier()
 m3.fit(X_train,y_train)
